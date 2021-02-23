@@ -43,10 +43,11 @@ O ciclo de vida de uma requisição ao read-side é descrito abaixo:
 1. Query enviada pelo front
 2. Filtro de segurança intercepta a requisição e verifica se o token recebido no HTTP header 'Authorization' é válido, fazendo uma requisição ao Redis (isso garante que o usuário ainda está logado)
 3. Após a validação, o filtro delega a requisição para o Controller correto.
-4. O Controller recebe a Query e invoca o repositório
-5. O repositório efetua uma query no Elasticsearch (nossa read-optimized view)
-6. A query retorna o objeto resultante da busca
-7. Ciclo de vida da requisição é encerrado devolvendo uma resposta (objeto solicitado) à UI
+4. O Controller recebe a Query e invoca o Query Handler correto
+5. O Query Handler invoca invoca o repositório
+6. O repositório efetua uma query no Elasticsearch (nossa read-optimized view)
+7. A query retorna o objeto resultante da busca
+8. Ciclo de vida da requisição é encerrado devolvendo uma resposta (objeto solicitado) à UI
 
 ### **Sync / Projection***
 O passo-a-passo de como é feita a sincronização / projeção entre o write e read repositories é descrito abaixo
