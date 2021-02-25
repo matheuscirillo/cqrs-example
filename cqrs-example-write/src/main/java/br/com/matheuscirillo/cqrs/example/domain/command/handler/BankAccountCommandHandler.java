@@ -9,6 +9,8 @@ import br.com.matheuscirillo.cqrs.example.domain.command.CreateBankAccountComman
 import br.com.matheuscirillo.cqrs.example.domain.command.MakeTransactionCommand;
 import br.com.matheuscirillo.cqrs.example.domain.entity.TransactionType;
 import br.com.matheuscirillo.cqrs.example.domain.entity.aggregate.BankAccount;
+import br.com.matheuscirillo.cqrs.example.domain.event.account.BankAccountCreatedEvent;
+import br.com.matheuscirillo.cqrs.example.domain.event.account.TransactionEvent;
 import br.com.matheuscirillo.cqrs.example.infrastructure.integration.BankAccountEventPublisher;
 import br.com.matheuscirillo.cqrs.example.infrastructure.repository.BankAccountRepository;
 
@@ -21,23 +23,28 @@ public class BankAccountCommandHandler {
     @Autowired
     private BankAccountEventPublisher eventDispatcher;
 
-    public void handle(CreateBankAccountCommand cmd) throws JsonProcessingException {
+    public BankAccountCreatedEvent handle(CreateBankAccountCommand cmd) throws JsonProcessingException {
 	BankAccount bankAccount = repository.getById(cmd.getId());
-	bankAccount.create(cmd.getId(), cmd.getType());
+	BankAccountCreatedEvent event = bankAccount.create(cmd.getId(), cmd.getType());
 	
 	repository.appendToStream(cmd.getId(), bankAccount.getChanges());
 	eventDispatcher.publish(bankAccount.getChanges());
+	
+	return event;
     }
 
-    public void handle(MakeTransactionCommand cmd) throws JsonProcessingException {
+    public TransactionEvent handle(MakeTransactionCommand cmd) throws JsonProcessingException {
 	BankAccount bankAccount = repository.getById(cmd.getAccountId());
+	TransactionEvent event = null;
 	if (cmd.getType() == TransactionType.Deposit)
-	    bankAccount.deposit(cmd.getAmount());
+	    event = bankAccount.deposit(cmd.getAmount());
 	else if (cmd.getType() == TransactionType.Withdraw)
-	    bankAccount.withdraw(cmd.getAmount());
+	    event = bankAccount.withdraw(cmd.getAmount());
 
 	repository.appendToStream(cmd.getAccountId(), bankAccount.getChanges());
 	eventDispatcher.publish(bankAccount.getChanges());
+	
+	return event;
     }
 
 }

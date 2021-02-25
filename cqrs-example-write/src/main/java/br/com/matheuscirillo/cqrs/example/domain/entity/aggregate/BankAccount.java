@@ -44,11 +44,14 @@ public class BankAccount {
      * @param type Tipo de conta (PF ou PJ)
      * 
      */
-    public void create(Integer id, String type) {
+    public BankAccountCreatedEvent create(Integer id, String type) {
 	if (this.createdAt != null)
 	    throw new BankAccountAlreadyExistsException("A conta já existe");
 
-	apply(new BankAccountCreatedEvent(id, type, new Date()), true);
+	BankAccountCreatedEvent event = new BankAccountCreatedEvent(id, type, new Date());
+	apply(event, true);
+
+	return event;
     }
 
     /**
@@ -58,11 +61,14 @@ public class BankAccount {
      * @param amount Valor que está sendo depositado
      * 
      */
-    public void deposit(Double amount) {
+    public TransactionEvent deposit(Double amount) {
 	if (this.createdAt == null)
 	    throw new BankAccountDoNotExistsException("Não é possível efetuar um depósito nesta conta. Ela não existe");
 
-	apply(new TransactionEvent(this.id, TransactionType.Deposit, amount), true);
+	TransactionEvent event = new TransactionEvent(this.id, TransactionType.Deposit, amount);
+	apply(event, true);
+	
+	return event;
     }
 
     /**
@@ -74,14 +80,17 @@ public class BankAccount {
      *                              efetuar o saque
      * 
      */
-    public void withdraw(Double amount) {
+    public TransactionEvent withdraw(Double amount) {
 	if (this.createdAt == null)
 	    throw new BankAccountDoNotExistsException("Não é possível efetuar um saque desta conta. Ela não existe");
 
 	if (balance < amount)
 	    throw new TransactionException("Saldo insuficiente");
-
-	apply(new TransactionEvent(this.id, TransactionType.Withdraw, amount), true);
+	
+	TransactionEvent event = new TransactionEvent(this.id, TransactionType.Withdraw, amount);
+	apply(event, true);
+	
+	return event;
     }
 
     /**
