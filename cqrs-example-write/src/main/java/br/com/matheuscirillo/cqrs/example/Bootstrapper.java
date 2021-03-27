@@ -1,19 +1,18 @@
 package br.com.matheuscirillo.cqrs.example;
 
-import java.util.concurrent.ExecutionException;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
 public class Bootstrapper {
 
     public static void main(String[] args) throws JsonProcessingException, InterruptedException, ExecutionException {
-	SpringApplication.run(Bootstrapper.class, args);
+        SpringApplication.run(Bootstrapper.class, args);
     }
 
 }

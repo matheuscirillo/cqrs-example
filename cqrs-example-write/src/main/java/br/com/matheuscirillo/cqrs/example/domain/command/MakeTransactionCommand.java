@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MakeTransactionCommand {
-    
+
     private Integer accountId;
     private TransactionType type;
     private Double amount;
-        
+
 }

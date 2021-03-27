@@ -10,15 +10,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	http.authorizeRequests()
-		.anyRequest().permitAll()
-	.and()
-		.csrf().disable().headers().frameOptions().disable();
+        http.authorizeRequests()
+                .anyRequest().permitAll()
+                .and()
+                .csrf().disable().headers().frameOptions().disable();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-	web.ignoring().antMatchers("/h2-console/**");
+        web.ignoring().antMatchers("/h2-console/**");
     }
 
 }

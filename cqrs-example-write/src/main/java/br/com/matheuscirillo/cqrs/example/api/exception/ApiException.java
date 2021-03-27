@@ -10,6 +10,6 @@ public class ApiException extends RuntimeException {
     private ApiError error;
 
     public ApiException(ErrorType errorType, String message) {
-	this.error = new ApiError(errorType, message);
+        this.error = new ApiError(errorType, message);
     }
 }

@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class BankAccountEvent extends Event {
-    
+
     protected Integer bankAccountId;
-    
+
     public BankAccountEvent(Integer bankAccountId, EventType eventType) {
-	super(eventType);
-	this.bankAccountId = bankAccountId;
+        super(eventType);
+        this.bankAccountId = bankAccountId;
     }
 }

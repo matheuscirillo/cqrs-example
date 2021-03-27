@@ -11,5 +11,5 @@ public class UserToken {
 
     private String value;
     private Long expiresIn;
-    
+
 }

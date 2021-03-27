@@ -9,11 +9,11 @@ public enum ErrorType {
     private HttpStatus httpStatus;
 
     private ErrorType(HttpStatus httpStatus) {
-	this.httpStatus = httpStatus;
+        this.httpStatus = httpStatus;
     }
 
     public HttpStatus getHttpStatus() {
-	return httpStatus;
+        return httpStatus;
     }
 
 }

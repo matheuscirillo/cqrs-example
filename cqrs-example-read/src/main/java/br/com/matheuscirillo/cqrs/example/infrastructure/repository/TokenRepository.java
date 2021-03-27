@@ -11,7 +11,7 @@ public class TokenRepository {
     private StringRedisTemplate template;
 
     public String get(Integer id) {
-	return template.opsForValue().get(String.valueOf(id));
+        return template.opsForValue().get(String.valueOf(id));
     }
 
 }

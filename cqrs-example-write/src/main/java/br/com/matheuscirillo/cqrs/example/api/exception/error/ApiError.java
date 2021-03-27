@@ -1,8 +1,8 @@
 package br.com.matheuscirillo.cqrs.example.api.exception.error;
 
-import java.util.Date;
-
 import lombok.Getter;
+
+import java.util.Date;
 
 @Getter
 public class ApiError {
@@ -13,10 +13,10 @@ public class ApiError {
     private String message;
 
     public ApiError(ErrorType errorType, String message) {
-	this.timestamp = new Date().getTime();
-	this.message = message;
-	this.httpCode = errorType.getHttpStatus().value();
-	this.type = errorType.name();
+        this.timestamp = new Date().getTime();
+        this.message = message;
+        this.httpCode = errorType.getHttpStatus().value();
+        this.type = errorType.name();
     }
 
 }

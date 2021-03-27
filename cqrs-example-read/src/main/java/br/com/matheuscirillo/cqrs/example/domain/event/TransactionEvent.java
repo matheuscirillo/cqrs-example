@@ -1,12 +1,12 @@
 package br.com.matheuscirillo.cqrs.example.domain.event;
 
-import java.util.UUID;
-
 import br.com.matheuscirillo.cqrs.example.domain.entity.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter

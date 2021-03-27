@@ -9,15 +9,15 @@ public enum ErrorType {
     private HttpStatus httpStatusCode;
 
     private ErrorType(HttpStatus status) {
-	this.httpStatusCode = status;
+        this.httpStatusCode = status;
     }
 
     public HttpStatus getHttpStatusCode() {
-	return httpStatusCode;
+        return httpStatusCode;
     }
 
     public void setHttpStatusCode(HttpStatus httpStatusCode) {
-	this.httpStatusCode = httpStatusCode;
+        this.httpStatusCode = httpStatusCode;
     }
 
 }

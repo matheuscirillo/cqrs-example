@@ -1,9 +1,5 @@
 package br.com.matheuscirillo.cqrs.example.api.facade.impl;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.matheuscirillo.cqrs.example.api.dto.AuthenticationRequest;
 import br.com.matheuscirillo.cqrs.example.api.dto.AuthenticationResponse;
 import br.com.matheuscirillo.cqrs.example.api.dto.RegistrationRequest;
@@ -14,6 +10,9 @@ import br.com.matheuscirillo.cqrs.example.domain.entity.UserAccount;
 import br.com.matheuscirillo.cqrs.example.domain.exception.UnauthorizedException;
 import br.com.matheuscirillo.cqrs.example.domain.security.UserToken;
 import br.com.matheuscirillo.cqrs.example.domain.services.UserAccountService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountFacadeImpl implements UserAccountFacade {
@@ -26,17 +25,17 @@ public class UserAccountFacadeImpl implements UserAccountFacade {
 
     @Override
     public Integer register(RegistrationRequest request) {
-	return service.create(mapper.map(request, UserAccount.class)).getId();
+        return service.create(mapper.map(request, UserAccount.class)).getId();
     }
 
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-	try {
-	    UserToken userToken = service.authenticate(request.getUsername(), request.getPassword());
+        try {
+            UserToken userToken = service.authenticate(request.getUsername(), request.getPassword());
 
-	    return new AuthenticationResponse(userToken.getValue(), userToken.getExpiresIn());
-	} catch (UnauthorizedException e) {
-	    throw new ApiException(ErrorType.UNAUTHORIZED, e.getMessage());
-	}
+            return new AuthenticationResponse(userToken.getValue(), userToken.getExpiresIn());
+        } catch (UnauthorizedException e) {
+            throw new ApiException(ErrorType.UNAUTHORIZED, e.getMessage());
+        }
     }
 }

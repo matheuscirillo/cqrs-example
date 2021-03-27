@@ -10,22 +10,22 @@ public class BankAccountCreatedEventHandler implements EventHandler<BankAccountC
     private BankAccountRepository repository;
 
     public BankAccountCreatedEventHandler(BankAccountRepository repository) {
-	this.repository = repository;
+        this.repository = repository;
     }
 
     @Override
     public void handle(BankAccountCreatedEvent event) {
-	repository.save(new BankAccount(event.getAccountId(), 0.0, null, event.getAccountCreatedAt()));
+        repository.save(new BankAccount(event.getAccountId(), 0.0, null, event.getAccountCreatedAt()));
     }
 
     @Override
     public Class<BankAccountCreatedEvent> getTypeHandled() {
-	return BankAccountCreatedEvent.class;
+        return BankAccountCreatedEvent.class;
     }
 
     @Override
     public EventType getEventType() {
-	return EventType.BankAccountCreatedEvent;
+        return EventType.BankAccountCreatedEvent;
     }
 
 }

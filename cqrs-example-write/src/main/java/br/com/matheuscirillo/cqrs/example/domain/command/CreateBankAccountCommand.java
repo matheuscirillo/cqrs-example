@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateBankAccountCommand {
-    
+
     private Integer id;
     private String type;
-    
+
 }

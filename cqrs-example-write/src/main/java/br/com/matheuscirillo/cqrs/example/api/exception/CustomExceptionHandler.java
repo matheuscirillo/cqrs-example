@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
-    @ExceptionHandler({ ApiException.class })
+    @ExceptionHandler({ApiException.class})
     public ResponseEntity<Object> handleApiException(ApiException ex) {
-	return ResponseEntity.status(ex.getError().getHttpCode()).body(ex.getError());
+        return ResponseEntity.status(ex.getError().getHttpCode()).body(ex.getError());
     }
 
 }

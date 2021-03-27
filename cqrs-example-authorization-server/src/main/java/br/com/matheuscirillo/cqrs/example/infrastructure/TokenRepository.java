@@ -11,11 +11,11 @@ public class TokenRepository {
     private StringRedisTemplate template;
 
     public void store(Integer id, String token) {
-	template.opsForValue().set(String.valueOf(id), token);
+        template.opsForValue().set(String.valueOf(id), token);
     }
 
     public void remove(Integer id) {
-	template.opsForValue().getOperations().delete(String.valueOf(id));
+        template.opsForValue().getOperations().delete(String.valueOf(id));
     }
 
 }

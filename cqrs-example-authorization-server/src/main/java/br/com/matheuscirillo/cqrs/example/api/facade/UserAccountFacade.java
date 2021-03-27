@@ -7,7 +7,7 @@ import br.com.matheuscirillo.cqrs.example.api.dto.RegistrationRequest;
 public interface UserAccountFacade {
 
     Integer register(RegistrationRequest request);
-    
+
     AuthenticationResponse authenticate(AuthenticationRequest request);
 
 }
