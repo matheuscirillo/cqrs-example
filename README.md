@@ -21,7 +21,7 @@
 A UI interage com ambos os lados da aplicação - write e read. O lado que chamamos de 'write' recebe todas as interações com a intenção de escrita (create, update e delete), enquanto, o lado que chamamos de 'read' recebe as interações com inteção de leitura.
 
 ### **Authorization Server (não exibido no desenho)**
-É a aplicação que efetua a criação do usuário, autenticação (emissão do token) e logout (revogação do token). Essa aplicação não segue padrões CQRS. Ela armazena o estado da conta do usuário em uma base SQL.
+É a aplicação que efetua a criação do usuário, autenticação (emissão do token) e logout (revogação do token). Essa aplicação não segue padrões CQRS nem event-sourcing e não propaga evento algum. Ela armazena o estado da conta do usuário em uma base SQL.
 
 ### **Write side**
 O ciclo de vida de uma requisição ao write-side é descrito abaixo:
